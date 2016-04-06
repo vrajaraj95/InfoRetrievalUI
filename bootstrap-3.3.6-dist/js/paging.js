@@ -1,80 +1,100 @@
-(function($) {
-    $(function() {
-        $.widget("zpd.paging", {
-            options: {
-                limit: 5,
-                rowDisplayStyle: 'block',
-                activePage: 0,
-                rows: []
-            },
-            _create: function() {
-                var rows = $("tbody", this.element).children();
-                this.options.rows = rows;
-                this.options.rowDisplayStyle = rows.css('display');
-                var nav = this._getNavBar();
-                this.element.after(nav);
-                this.showPage(0);
-            },
-            _getNavBar: function() {
-                var rows = this.options.rows;
-                var nav = $('<div>', {class: 'paging-nav'});
-                for (var i = 0; i < Math.ceil(rows.length / this.options.limit); i++) {
-                    this._on($('<a>', {
-                        href: '#',
-                        text: (i + 1),
-                        "data-page": (i)
-                    }).appendTo(nav),
-                            {click: "pageClickHandler"});
-                }
-                //create previous link
-                this._on($('<a>', {
-                    href: '#',
-                    text: '<<',
-                    "data-direction": -1
-                }).prependTo(nav),
-                        {click: "pageStepHandler"});
-                //create next link
-                this._on($('<a>', {
-                    href: '#',
-                    text: '>>',
-                    "data-direction": +1
-                }).appendTo(nav),
-                        {click: "pageStepHandler"});
-                return nav;
-            },
-            showPage: function(pageNum) {
-                var num = pageNum * 1; //it has to be numeric
-                this.options.activePage = num;
-                var rows = this.options.rows;
-                var limit = this.options.limit;
-                for (var i = 0; i < rows.length; i++) {
-                    if (i >= limit * num && i < limit * (num + 1)) {
-                        $(rows[i]).css('display', this.options.rowDisplayStyle);
-                    } else {
-                        $(rows[i]).css('display', 'none');
-                    }
-                }
-            },
-            pageClickHandler: function(event) {
-                event.preventDefault();
-                $(event.target).siblings().attr('class', "");
-                $(event.target).attr('class', "selected-page");
-                var pageNum = $(event.target).attr('data-page');
-                this.showPage(pageNum);
-            },
-            pageStepHandler: function(event) {
-                event.preventDefault();
-                //get the direction and ensure it's numeric
-                var dir = $(event.target).attr('data-direction') * 1;
-                var pageNum = this.options.activePage + dir;
-                //if we're in limit, trigger the requested pages link
-                if (pageNum >= 0 && pageNum < this.options.rows.length) {
-                    $("a[data-page=" + pageNum + "]", $(event.target).parent()).click();
-                }
-            }
-        });
+"use strict"
+
+//function for pagination
+$.fn.pageMe = function(opts){
+    var $this = this,
+        defaults = {
+            perPage: 3,
+            showPrevNext: false,
+            hidePageNumbers: false
+        },
+        settings = $.extend(defaults, opts);
+
+    var listElement = $this;
+    var perPage = settings.perPage; 
+    var children = listElement.children();
+    $('.pager')[0].innerText = "";
+    var pager = $('.pager');
+    console.log(pager);
+    if (typeof settings.childSelector!="undefined") {
+        children = listElement.find(settings.childSelector);
+    }
+
+    if (typeof settings.pagerSelector!="undefined") {
+        pager = $(settings.pagerSelector);
+    }
+    var numItems = children.size();
+    var numPages = Math.ceil(numItems/perPage);
+
+    pager.data("curr",0);
+
+    if (settings.showPrevNext){
+        $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+    }
+
+    var curr = 0;
+    while(numPages > curr && (settings.hidePageNumbers==false)){
+        $('<li><a href="#" class="page_link">'+(curr+1)+'</a></li>').appendTo(pager);
+        curr++;
+    }
+
+    if (settings.showPrevNext){
+        $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+    }
+    pager.find('.page_link:first').addClass('active');
+    pager.find('.prev_link').hide();
+    if (numPages<=1) {
+        pager.find('.next_link').hide();
+    }
+    pager.children().eq(1).addClass("active");
+    children.hide();
+    children.slice(0, perPage).show();
+
+    pager.find('li .page_link').click(function(){
+        var clickedPage = $(this).html().valueOf()-1;
+        goTo(clickedPage,perPage);
+        return false;
     });
-})(jQuery);
+    pager.find('li .prev_link').click(function(){
+    previous();
+    return false;
+    });
+    pager.find('li .next_link').click(function(){
+    next();
+    return false;
+    });
 
+    function previous(){
+        var goToPage = parseInt(pager.data("curr")) - 1;
+        goTo(goToPage);
+    }
 
+    function next(){
+        goToPage = parseInt(pager.data("curr")) + 1;
+        goTo(goToPage);
+    }
 
+    function goTo(page){
+        var startAt = page * perPage,
+        endOn = startAt + perPage;
+
+        children.css('display','none').slice(startAt, endOn).show();
+        if (page>=1) {
+            pager.find('.prev_link').show();
+        }
+        else {
+            pager.find('.prev_link').hide();
+        }
+
+        if (page<(numPages-1)) {
+            pager.find('.next_link').show();
+        }
+        else {
+            pager.find('.next_link').hide();
+        }
+
+        pager.data("curr",page);
+        pager.children().removeClass("active");
+        pager.children().eq(page+1).addClass("active");
+    }
+};
