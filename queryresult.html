@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="custom.css">
+
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    
+    <title>Results: CZ4034 Information Retrieval (Group 43)</title>
+    
+</head>
+
+<body style="background:#DCDCDC">
+
+    <div class="container">
+        <ul class="nav nav-pills nav-justified ">
+            <li role="presentation" class="active"><a href="#">Search</a></li>
+            <li role="presentation"><a href="crawl.html">Crawl</a></li>
+            <li role="presentation"><a href="classification.html">Classification</a></li>
+        </ul>
+    </div>
+    
+    <div class="col-xs-12" style="height:80px;"></div>
+    
+    <div class="container-fluid" id="img_row">
+        <img src="The_New_York_Times_logo.png" class="img-thumbnail" style="margin:#0;padding:#0;background:#DCDCDC" width="10%">
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-12" style="height:20px;"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+                <label class="radio-inline">
+                    <input type="radio" name="optradio">Article Search
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="optradio">Image Search
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <table id="tbl" class="table-hover">
+                <tbody id="tbody"></tbody>
+            </table>
+        </div>
+        <div class="col-md-12 text-center">
+            <ul class="pagination pagination-lg pager" id="myPager"></ul>
+        </div>
+    </div>
+    
+    <script>
+        
+        var data = '{"response": {"docs": [{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"},{"type_of_material": "Blog", "lead_paragraph": null, "headline": {"main": "Many Who Take a Daily Aspirin Don\'t Need It", "print_headline": "Prevention: An Overuse of Daily Aspirin"}, "abstract": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "word_count": "230", "_id": "54b54a34798810566ec1ad9d", "snippet": "Many healthy people take a daily aspirin to reduce the risk of heart disease and stroke, but a new study has found that more than 11 percent of them should not be doing so.", "web_url": "http://well.blogs.nytimes.com/2015/01/13/many-who-take-a-daily-aspirin-dont-need-it/", "multimedia": [{"subtype": "wide", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "height": 126, "width": 190, "legacy": {"wide": "images/2012/05/07/health/well-prevention/well-prevention-thumbWide.jpg", "wideheight": "126", "widewidth": "190"}, "type": "image"}, {"subtype": "thumbnail", "url": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "height": 75, "width": 75, "legacy": {"thumbnailheight": "75", "thumbnail": "images/2012/05/07/health/well-prevention/well-prevention-thumbStandard.jpg", "thumbnailwidth": "75"}, "type": "image"}], "pub_date": "2015-01-13T11:37:12Z"}]}}'
+        
+        function getLength(data) {
+            obj = JSON.parse(data);
+            document.getElementById("count").innerHTML = obj.response['docs'].length;
+        }
+        //window.alert("Started");
+        obj = JSON.parse(data);
+            
+        var tbody = document.getElementById("tbody");
+        //window.alert
+        for (var i = 0; i < obj.response['docs'].length; i++) {
+            var tr = "<tr>";
+            tr += "<td><h4><b><a href=" + obj.response['docs'][i]['web_url'] + ">" + obj.response['docs'][i]['headline']['print_headline'] + "</a></b></h4><br>" + "<i>Published on " + obj.response['docs'][i]['pub_date'].slice(0,10) + "</i>" + "<br><h5>" + obj.response['docs'][i]['snippet'] + ".." + "</h5></td></tr><br></br>";
+            //window.alert(tr);
+            tbody.innerHTML += tr;
+        }
+        
+        $.fn.pageMe = function(opts){
+            var $this = this,
+                defaults = {
+                    perPage: 3,
+                    showPrevNext: false,
+                    hidePageNumbers: false
+                },
+                settings = $.extend(defaults, opts);
+            
+            var listElement = $this;
+            var perPage = settings.perPage; 
+            var children = listElement.children();
+            var pager = $('.pager');
+            if (typeof settings.childSelector!="undefined") {
+                children = listElement.find(settings.childSelector);
+            }
+    
+            if (typeof settings.pagerSelector!="undefined") {
+                pager = $(settings.pagerSelector);
+            }
+            var numItems = children.size();
+            var numPages = Math.ceil(numItems/perPage);
+
+            pager.data("curr",0);
+    
+            if (settings.showPrevNext){
+                $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+            }
+    
+            var curr = 0;
+            while(numPages > curr && (settings.hidePageNumbers==false)){
+                $('<li><a href="#" class="page_link">'+(curr+1)+'</a></li>').appendTo(pager);
+                curr++;
+            }
+            
+            if (settings.showPrevNext){
+                $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+            }
+            pager.find('.page_link:first').addClass('active');
+            pager.find('.prev_link').hide();
+            if (numPages<=1) {
+                pager.find('.next_link').hide();
+            }
+            pager.children().eq(1).addClass("active");
+            children.hide();
+            children.slice(0, perPage).show();
+            
+            pager.find('li .page_link').click(function(){
+                var clickedPage = $(this).html().valueOf()-1;
+                goTo(clickedPage,perPage);
+                return false;
+            });
+            pager.find('li .prev_link').click(function(){
+            previous();
+            return false;
+            });
+            pager.find('li .next_link').click(function(){
+            next();
+            return false;
+            });
+            
+            function previous(){
+                var goToPage = parseInt(pager.data("curr")) - 1;
+                goTo(goToPage);
+            }
+     
+            function next(){
+                goToPage = parseInt(pager.data("curr")) + 1;
+                goTo(goToPage);
+            }
+            
+            function goTo(page){
+                var startAt = page * perPage,
+                endOn = startAt + perPage;
+                
+                children.css('display','none').slice(startAt, endOn).show();
+                if (page>=1) {
+                    pager.find('.prev_link').show();
+                }
+                else {
+                    pager.find('.prev_link').hide();
+                }
+        
+                if (page<(numPages-1)) {
+                    pager.find('.next_link').show();
+                }
+                else {
+                    pager.find('.next_link').hide();
+                }
+                
+                pager.data("curr",page);
+                pager.children().removeClass("active");
+                pager.children().eq(page+1).addClass("active");
+            }
+        };
+        
+        $(document).ready(function(){
+            $('#tbody').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:30});
+        });
+    
+    </script>
+</body>
+
+</html>
